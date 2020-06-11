@@ -1,1 +1,3 @@
-console.log('helloworld')
+let strA = 'Hello, '
+
+console.log(strA)
