@@ -14,6 +14,8 @@ ReactDOM.render(
 
 // 匿名函式
 
+
+/*
 const displayTime = () => {
   // 顯示時間的組件
   let nowTime = (
@@ -25,3 +27,20 @@ const displayTime = () => {
 }
 
 setInterval(displayTime, 1000)
+*/
+
+class HelloWorld extends React.Component {
+  render () {
+  return <h1>Hello World, {this.props.name}</h1>
+  }
+}
+
+// 宣告一個欲渲染的根組件
+let rootDiv = (
+  <div>
+    { /*這是註解, 插入自製組件*/ }
+    <HelloWorld name="Mary"></HelloWorld>
+    <HelloWorld name="Jhon"></HelloWorld>
+  </div>
+)
+ReactDOM.render(rootDiv, document.getElementById('root'))
