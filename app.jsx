@@ -28,19 +28,37 @@ const displayTime = () => {
 
 setInterval(displayTime, 1000)
 */
-
-class HelloWorld extends React.Component {
-  render () {
-  return <p style={this.props.style}>Hello World, {this.props.name}</p>
+class NowTime extends React.Component {
+  //使用類別中的constructor建構子，參數中傳入props是必要的
+  constructor(props){
+      //super-> eact.Component內的props屬性
+      super(props)
+      this.state = {time : new Date().toLocaleTimeString()}
+  }
+  componentDidMount () {
+    // 組件建構完成，每一次都去刷新this.state.time
+    const updateTime = () => {
+      this.setState({time: new Date().toLocaleTimeString()})
+    }
+    setInterval(updateTime, 1000)
+  }
+  componentDidUpdate (prevProps, prevState) {
+    console.log('prevProps, prevState', prevProps, prevState,)
+    console.log('state被更新了')
+  }
+  render(){
+      //使用類別中state的屬性
+      return <h1>現在時間是{this.state.time}</h1>
+  }
+  componentWillUnmount () {
+    console.log('component被移除了，在', this.state.time)
   }
 }
 
-// 宣告一個欲渲染的根組件
-let rootDiv = (
-  <div>
-    { /*這是註解, 插入自製組件*/ }
-    <HelloWorld name="Mary" style={ {'font-size': 20} }></HelloWorld>
-    <HelloWorld name="Jhon" style={ {'font-size': 10} }></HelloWorld>
-  </div>
-)
-ReactDOM.render(rootDiv, document.getElementById('root'))
+ReactDOM.render(<NowTime />,document.getElementById('root'))
+
+const removeElement = () => {
+  ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+}
+
+setTimeout(removeElement, 5000)
