@@ -31,7 +31,7 @@ setInterval(displayTime, 1000)
 
 class HelloWorld extends React.Component {
   render () {
-  return <h1>Hello World, {this.props.name}</h1>
+  return <p style={this.props.style}>Hello World, {this.props.name}</p>
   }
 }
 
@@ -39,8 +39,8 @@ class HelloWorld extends React.Component {
 let rootDiv = (
   <div>
     { /*這是註解, 插入自製組件*/ }
-    <HelloWorld name="Mary"></HelloWorld>
-    <HelloWorld name="Jhon"></HelloWorld>
+    <HelloWorld name="Mary" style={ {'font-size': 20} }></HelloWorld>
+    <HelloWorld name="Jhon" style={ {'font-size': 10} }></HelloWorld>
   </div>
 )
 ReactDOM.render(rootDiv, document.getElementById('root'))
